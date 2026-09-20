@@ -9,11 +9,6 @@
   },
   "homepage": "https://docs.gutternote.com/guides/connect-a-coding-agent/",
   "repository": "https://github.com/gutternote/gutternote-plugins",
-  "keywords": [
-    "gutternote",
-    "mcp",
-    "feedback",
-    "code-review"
-  ],
+  "keywords": ["gutternote", "mcp", "feedback", "code-review"],
   "license": "MIT"
 }
