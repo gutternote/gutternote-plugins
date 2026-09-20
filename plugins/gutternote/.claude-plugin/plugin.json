@@ -1,0 +1,19 @@
+{
+  "name": "gutternote",
+  "displayName": "Gutternote",
+  "version": "0.1.0",
+  "description": "Connects your coding agent to Gutternote: work the notes people leave on a running preview, and put the widget on your website, including behind a Content Security Policy.",
+  "author": {
+    "name": "Gutternote",
+    "url": "https://gutternote.com"
+  },
+  "homepage": "https://docs.gutternote.com/guides/connect-a-coding-agent/",
+  "repository": "https://github.com/gutternote/gutternote-plugins",
+  "keywords": [
+    "gutternote",
+    "mcp",
+    "feedback",
+    "code-review"
+  ],
+  "license": "MIT"
+}

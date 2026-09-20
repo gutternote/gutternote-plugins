@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "gutternote": {
+      "type": "http",
+      "url": "https://api.gutternote.com/mcp"
+    }
+  }
+}

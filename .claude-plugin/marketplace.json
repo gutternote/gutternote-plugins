@@ -1,0 +1,15 @@
+{
+  "name": "gutternote-plugins",
+  "owner": {
+    "name": "Gutternote",
+    "url": "https://gutternote.com"
+  },
+  "description": "Claude Code plugins for Gutternote: work the notes people leave on your site, and put the widget on it.",
+  "plugins": [
+    {
+      "name": "gutternote",
+      "source": "./plugins/gutternote",
+      "description": "Connects your coding agent to Gutternote: work the notes people leave on a running preview, and put the widget on your website."
+    }
+  ]
+}
