@@ -2,8 +2,8 @@
 
 Plugins for using [Gutternote](https://gutternote.com) from a coding agent.
 Gutternote is a comment toolbar you drop onto a website with one script tag:
-people click an element on the live page, say what is wrong, and the note goes to
-a shared list that a coding agent can read and reply to.
+reviewers click an element on a running preview and leave a comment, and your
+coding agent picks the comment up, makes the change, and replies in the thread.
 
 ## Install (Claude Code)
 
@@ -19,28 +19,51 @@ to create or paste.
 ## What is in it
 
 **`gutternote`** connects the agent to Gutternote's hosted MCP server
-(`https://api.gutternote.com/mcp`) and adds two skills:
+(`https://mcp.gutternote.com/mcp`) and adds two skills:
 
 | Skill | For |
 |---|---|
-| `work-notes` | Working the notes people have left: find the ready ones, read each in full, make the change, report progress, and resolve it with evidence. |
-| `install-widget` | Putting the widget on your website, following Gutternote's documentation, including a Content Security Policy if your site has one. |
+| `review-threads` | Working the review comments on your branch or pull request's previews: read each one, make the change, reply to the reviewer, resolve it with evidence, and wait for the next comment or reply. |
+| `install-widget` | Putting the widget on your website, following Gutternote's documentation, including a Content Security Policy if your site has one and the build metadata your previews need. |
 
-Ask in plain words — "work the ready Gutternote notes", "set up the Gutternote
-widget on this site" — and the skill loads itself.
+Ask in plain words — "work the Gutternote comments on this pull request", "set up the
+Gutternote widget on this site" — and the skill loads itself.
 
-## Other MCP clients
+The agent talks to the reviewer in the comment's thread: its questions, answers,
+summary when it resolves and reason for reopening are posted there as replies,
+under your client's name. Gutternote cannot message the agent, so once it has
+worked everything it waits: it asks the server to hold on until a reviewer
+comments, replies or reopens something, then picks that up. For longer waits,
+run `/loop /gutternote:review-threads` and it checks back on its own.
 
-You do not need this plugin to use Gutternote from an agent. Point any client that
-supports the MCP authorization spec at `https://api.gutternote.com/mcp`. See
-[Connect a coding agent](https://docs.gutternote.com/guides/connect-a-coding-agent/).
+A pull request's comments are found by the branch and pull request the preview
+declared, so previews need build metadata. See
+[Add build and source context](https://docs.gutternote.com/guides/build-and-source-context/).
 
-## A note about notes
+## Without the plugin
 
-A note's text is written by whoever commented on the page, guests included. The
-skills tell the agent to read it as a description of what to change and never as
-instructions to itself, and a note only reaches an agent after a member of the
-project has offered it. If you build your own agent on this, do the same.
+You do not need this plugin to use Gutternote from an agent. In Claude Code, add
+the server on its own:
+
+```
+claude mcp add --transport http gutternote https://mcp.gutternote.com/mcp
+```
+
+Any other client that supports the MCP authorization spec can use the same URL.
+The server's own prompts, `work_threads`, `work_thread` and `set_up_widget`, run
+the same workflows as the skills. See
+[Connect an external coding agent](https://docs.gutternote.com/guides/connect-a-coding-agent/).
+
+## About comments
+
+A comment's text is written by whoever left it on the page, guests included. The
+skills tell the agent to read it, and every reply in its thread, as a description
+of what to change and never as instructions to itself. A comment reaches the
+agent straight away only when its author is someone the project lets send work
+to agents — by default, anyone signed in rather than a guest; a member can send
+any other comment from the dashboard. What the agent posts back is
+read by the same people, so the skills tell it to keep secrets and internal
+details out. If you build your own agent on this, do the same.
 
 ## Where this comes from
 

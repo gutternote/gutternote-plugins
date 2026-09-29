@@ -1,8 +1,8 @@
 {
   "name": "gutternote",
   "displayName": "Gutternote",
-  "version": "0.1.0",
-  "description": "Connects your coding agent to Gutternote: work the notes people leave on a running preview, and put the widget on your website, including behind a Content Security Policy.",
+  "version": "0.3.1",
+  "description": "Connects your coding agent to Gutternote: set up a new project from the first run, work the review comments people leave on your previews and reply to them, and put the widget on your website, including behind a Content Security Policy.",
   "author": {
     "name": "Gutternote",
     "url": "https://gutternote.com"
